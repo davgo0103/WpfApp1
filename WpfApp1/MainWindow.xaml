@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btn1" Content="OK" HorizontalAlignment="Left" Height="41" Margin="67,72,0,0" VerticalAlignment="Top" Width="101" BorderBrush="#FFE42828" ClickMode="Press" Click="btn1_Click"/>
-        <Label x:Name="label1" Content="OUO&#xD;&#xA;" HorizontalAlignment="Left" Height="48" Margin="110,162,0,0" VerticalAlignment="Top" Width="91"/>
+        <Button x:Name="btn1" Content="OK" HorizontalAlignment="Left" Height="41" Margin="650,309,0,0" VerticalAlignment="Top" Width="101" BorderBrush="#FFE42828" ClickMode="Press" Click="btn1_Click"/>
+        <Label x:Name="label1" Content="飲料清單" HorizontalAlignment="Left" Height="25" Margin="67,24,0,0" VerticalAlignment="Top" Width="60"/>
+        <ListBox HorizontalAlignment="Left" Height="125" Margin="67,54,0,0" VerticalAlignment="Top" Width="307"/>
 
     </Grid>
 </Window>
