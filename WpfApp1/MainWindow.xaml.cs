@@ -20,12 +20,15 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        List<Drink> drinks = new List<Drink>();
+        string takeout;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            List<Drink> drinks = new List<Drink>();
-
+            
             //新增飲料品項
             drinks.Add(new Drink() { Name = "咖啡",Size="大杯",Price = 60 });
             drinks.Add(new Drink() { Name = "咖啡",Size="中杯",Price = 50 });
@@ -54,12 +57,20 @@ namespace WpfApp1
                 cb.Content = d.Name + d.Size + d.Price;
 
                 sl.Width = 150;
-                lb.Width = 30;
+                lb.Width = 100;
                 lb.Content = "0";
+                sl.Maximum = 10;
+                sl.Minimum = 0;
+                sl.IsSnapToTickEnabled = true;
 
                 sp.Children.Add(cb);
                 sp.Children.Add(sl);
                 sp.Children.Add(lb);
+
+                Binding myBinding = new Binding("Value");
+                myBinding.Source = sl;
+                lb.SetBinding(ContentProperty,myBinding);
+
                 DrinkMenu.Children.Add(sp);
 
             }
@@ -70,6 +81,13 @@ namespace WpfApp1
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void Radiobutton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            takeout = rb.Content.ToString();
+
         }
     }
 }
