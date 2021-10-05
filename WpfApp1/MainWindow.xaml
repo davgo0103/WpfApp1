@@ -7,9 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btn1" Content="OK" HorizontalAlignment="Left" Height="41" Margin="650,309,0,0" VerticalAlignment="Top" Width="101" BorderBrush="#FFE42828" ClickMode="Press" Click="btn1_Click"/>
-        <Label x:Name="label1" Content="飲料清單" HorizontalAlignment="Left" Height="25" Margin="67,24,0,0" VerticalAlignment="Top" Width="60"/>
-        <ListBox HorizontalAlignment="Left" Height="125" Margin="67,54,0,0" VerticalAlignment="Top" Width="307"/>
+        <Button x:Name="btn1" Content="確認訂購" HorizontalAlignment="Left" Height="66" Margin="503,64,0,0" VerticalAlignment="Top" Width="220" BorderBrush="#FFE42828" ClickMode="Press" Click="btn1_Click"/>
+        <GroupBox Header="內用/外帶" HorizontalAlignment="Left" Height="76" Margin="50,54,0,0" VerticalAlignment="Top" Width="318" Background="#FFFFF7A6">
+            <StackPanel HorizontalAlignment="Left" Height="56" Margin="10,10,-2,-12" VerticalAlignment="Top" Width="197">
+                <RadioButton x:Name="R1" Content="內用"/>
+                <RadioButton x:Name="R2" Content="外帶"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="飲料品項" Height="235" Margin="50,165,424,0" VerticalAlignment="Top" Background="#FF94EC8F">
+            <StackPanel x:Name="DrinkMenu" HorizontalAlignment="Right" Height="200" Margin="0,0,-2,3" VerticalAlignment="Bottom" Width="298"/>
+        </GroupBox>
+        <TextBlock x:Name="Textblock1" HorizontalAlignment="Left" Margin="503,166,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="191" Width="220"/>
 
     </Grid>
 </Window>
