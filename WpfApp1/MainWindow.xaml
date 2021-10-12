@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="4A9G0144蔡士煒" Height="450" Width="800">
     <Grid>
         <Button x:Name="btn1" Content="確認訂購" HorizontalAlignment="Left" Height="66" Margin="503,64,0,0" VerticalAlignment="Top" Width="220" BorderBrush="#FFE42828" ClickMode="Press" Click="btn1_Click"/>
         <GroupBox Header="內用/外帶" HorizontalAlignment="Left" Height="76" Margin="50,54,0,0" VerticalAlignment="Top" Width="318" Background="#FFFFF7A6">
