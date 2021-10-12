@@ -33,12 +33,10 @@ namespace WpfApp1
             //新增飲料品項
             drinks.Add(new Drink() { Name = "咖啡",Size="大杯",Price = 60 });
             drinks.Add(new Drink() { Name = "咖啡",Size="中杯",Price = 50 });
-            drinks.Add(new Drink() { Name = "紅茶",Size="大杯",Price = 40 });
-            drinks.Add(new Drink() { Name = "紅茶",Size="中杯",Price = 30 });
-            drinks.Add(new Drink() { Name = "綠茶",Size="大杯",Price = 40 });
-            drinks.Add(new Drink() { Name = "綠茶",Size="中杯",Price = 30 });
-            drinks.Add(new Drink() { Name = "礦泉水",Size="大杯",Price = 20 });
-            drinks.Add(new Drink() { Name = "礦泉水",Size="小杯",Price = 10 });
+            drinks.Add(new Drink() { Name = "紅茶",Size="大杯",Price = 30 });
+            drinks.Add(new Drink() { Name = "紅茶",Size="中杯",Price = 20 });
+            drinks.Add(new Drink() { Name = "綠茶",Size="大杯",Price = 25 });
+            drinks.Add(new Drink() { Name = "綠茶",Size="中杯",Price = 20 });
 
             //顯示所有飲料品項
             DisplayDrink(drinks);
@@ -96,7 +94,7 @@ namespace WpfApp1
             Textblock1.Text = $"您要{takeout}飲料，訂單如下:\n";
             for(int i=0;i< myorder.Count;i++)
             {
-                Textblock1.Text += $"第{i}項:{mydrink[myorder[i].Index].Name}{mydrink[myorder[i].Index].Size}，每杯{mydrink[myorder[i].Index].Price}元，總共{myorder[i].Subtotal}元";
+                Textblock1.Text += $"第{i+1}項:{mydrink[myorder[i].Index].Name}{mydrink[myorder[i].Index].Size}，每杯{mydrink[myorder[i].Index].Price}元，總共{myorder[i].Subtotal}元\n";
                 total += myorder[i].Subtotal;
             }
             if(total >= 500)
@@ -109,14 +107,10 @@ namespace WpfApp1
                 message = "超過300元以上打85折";
                 sellPrice = Convert.ToInt32(Math.Round(Convert.ToDouble(total * 0.85)));
             }
-            else if (total >= 300)
+            else if (total >= 200)
             {
-                message = "超過300元以上打85折";
-                sellPrice = Convert.ToInt32(Math.Round(Convert.ToDouble(total * 0.85)));
-            }
-            else if (total < 200)
-            {
-                message = "未超過200元不打折";
+                message = "超過200元以上打9折";
+                sellPrice = Convert.ToInt32(Math.Round(Convert.ToDouble(total * 0.9)));
             }
             Textblock1.Text += $"總共{sellPrice}元，{message}";
             
