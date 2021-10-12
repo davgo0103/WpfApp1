@@ -112,6 +112,10 @@ namespace WpfApp1
                 message = "超過200元以上打9折";
                 sellPrice = Convert.ToInt32(Math.Round(Convert.ToDouble(total * 0.9)));
             }
+            else
+            {
+                sellPrice = total;
+            }
             Textblock1.Text += $"總共{sellPrice}元，{message}";
             
         }
