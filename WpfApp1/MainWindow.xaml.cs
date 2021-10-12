@@ -22,6 +22,7 @@ namespace WpfApp1
     {
 
         List<Drink> drinks = new List<Drink>();
+        List<Orderitem> order = new List<Orderitem>();
         string takeout;
 
         public MainWindow()
@@ -80,7 +81,63 @@ namespace WpfApp1
 
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
+            //新增飲料訂購品項至order內
+            PlaceOrder(order,drinks);
+
+            //計算訂單
+            CompletOrder(order,drinks);
+        }
+
+        private void CompletOrder(List<Orderitem> myorder,List<Drink> mydrink)
+        {
+            int total=0;
+            int sellPrice = 0;
+            string message = "";
+            Textblock1.Text = $"您要{takeout}飲料，訂單如下:\n";
+            for(int i=0;i< myorder.Count;i++)
+            {
+                Textblock1.Text += $"第{i}項:{mydrink[myorder[i].Index].Name}{mydrink[myorder[i].Index].Size}，每杯{mydrink[myorder[i].Index].Price}元，總共{myorder[i].Subtotal}元";
+                total += myorder[i].Subtotal;
+            }
+            if(total >= 500)
+            {
+                message = "超過500元以上打8折";
+                sellPrice = Convert.ToInt32(Math.Round(Convert.ToDouble(total * 0.8)));
+            }
+            else if (total >= 300)
+            {
+                message = "超過300元以上打85折";
+                sellPrice = Convert.ToInt32(Math.Round(Convert.ToDouble(total * 0.85)));
+            }
+            else if (total >= 300)
+            {
+                message = "超過300元以上打85折";
+                sellPrice = Convert.ToInt32(Math.Round(Convert.ToDouble(total * 0.85)));
+            }
+            else if (total < 200)
+            {
+                message = "未超過200元不打折";
+            }
+            Textblock1.Text += $"總共{sellPrice}元，{message}";
             
+        }
+
+        private void PlaceOrder(List<Orderitem> myorder,List<Drink> mydrink) 
+        {
+            myorder.Clear();
+            for (int i = 0; i < DrinkMenu.Children.Count; i++)
+            {
+                StackPanel sp = DrinkMenu.Children[i] as StackPanel;
+                CheckBox cb = sp.Children[0] as CheckBox;
+                Slider sl = sp.Children[1] as Slider;
+                int quantity = Convert.ToInt32(sl.Value);
+
+                if (cb.IsChecked == true && quantity != 0)
+                {
+                    order.Add(new Orderitem() { Index = i, Quantity = quantity, Subtotal = drinks[i].Price * quantity });
+                }
+
+            }
         }
 
         private void Radiobutton_Checked(object sender, RoutedEventArgs e)
