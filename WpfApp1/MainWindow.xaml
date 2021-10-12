@@ -17,7 +17,7 @@
         <GroupBox Header="飲料品項" Height="235" Margin="50,165,424,0" VerticalAlignment="Top" Background="#FF94EC8F">
             <StackPanel x:Name="DrinkMenu" HorizontalAlignment="Right" Height="200" Margin="0,0,-2,3" VerticalAlignment="Bottom" Width="298"/>
         </GroupBox>
-        <TextBlock x:Name="Textblock1" HorizontalAlignment="Left" Margin="503,166,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="191" Width="220"/>
+        <TextBlock x:Name="Textblock1" HorizontalAlignment="Left" Margin="503,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="191" Width="220"/>
 
     </Grid>
 </Window>
