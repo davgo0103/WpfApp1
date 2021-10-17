@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,14 +31,38 @@ namespace WpfApp1
         {
             InitializeComponent();
 
-            
+
             //新增飲料品項
-            drinks.Add(new Drink() { Name = "咖啡",Size="大杯",Price = 60 });
-            drinks.Add(new Drink() { Name = "咖啡",Size="中杯",Price = 50 });
-            drinks.Add(new Drink() { Name = "紅茶",Size="大杯",Price = 30 });
-            drinks.Add(new Drink() { Name = "紅茶",Size="中杯",Price = 20 });
-            drinks.Add(new Drink() { Name = "綠茶",Size="大杯",Price = 25 });
-            drinks.Add(new Drink() { Name = "綠茶",Size="中杯",Price = 20 });
+            OpenFileDialog openfileDialog = new OpenFileDialog();
+            openfileDialog.DefaultExt = "*.csv";
+            string path,line;
+            string[] strTemp;
+            path:
+            if (openfileDialog.ShowDialog() == true)
+            {
+                path = openfileDialog.FileName;
+                StreamReader sr = new StreamReader(path, Encoding.Default);
+                try
+                {
+                    sr.ReadLine();
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        strTemp = line.Split(',');
+                        drinks.Add(new Drink() { Name = strTemp[0], Size = strTemp[1], Price = Convert.ToInt32( strTemp[2] ) });
+                    }
+                }
+                catch{
+                    MessageBox.Show("檔案讀取失敗!!");
+                    goto path;
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("無效的路徑");
+                goto path;
+            }
+
 
             //顯示所有飲料品項
             DisplayDrink(drinks);
@@ -91,6 +117,13 @@ namespace WpfApp1
             int total=0;
             int sellPrice = 0;
             string message = "";
+
+            FileStream fs = new FileStream("4A9G0144.txt", FileMode.OpenOrCreate);
+            StreamWriter sw = new StreamWriter(fs, Encoding.Default);
+
+                
+
+
             Textblock1.Text = $"您要{takeout}飲料，訂單如下:\n";
             for(int i=0;i< myorder.Count;i++)
             {
@@ -117,7 +150,9 @@ namespace WpfApp1
                 sellPrice = total;
             }
             Textblock1.Text += $"總共{sellPrice}元，{message}";
-            
+            sw.WriteLine( Textblock1.Text);
+            sw.Close();
+
         }
 
         private void PlaceOrder(List<Orderitem> myorder,List<Drink> mydrink) 
